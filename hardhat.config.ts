@@ -9,9 +9,8 @@ import "hardhat-deploy"
 import { HardhatUserConfig } from "hardhat/config"
 
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || ""
-const SEPOLIA_RPC_URL =
-  process.env.SEPOLIA_RPC_URL || "https://eth-sepolia.g.alchemy.com/v2/YOUR-API-KEY"
-const PRIVATE_KEY = process.env.PRIVATE_KEY || "0x0000000000000000000000000000000000000000000000000000000000000000"
+const SEPOLIA_RPC_URL =process.env.SEPOLIA_RPC_URL
+const SEPOLIA_PVT_KEY = process.env.SEPOLIA_PVT_KEY
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || ""
 
 const config: HardhatUserConfig = {
@@ -27,7 +26,7 @@ const config: HardhatUserConfig = {
     },
     sepolia: {
       url: SEPOLIA_RPC_URL,
-      accounts: [PRIVATE_KEY],
+      accounts:SEPOLIA_PVT_KEY !== undefined ? [SEPOLIA_PVT_KEY] : [],
       chainId: 11155111,
     },
   },
